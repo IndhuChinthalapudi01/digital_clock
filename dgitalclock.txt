@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .container {
+            height: 100vh;
+            width: 100%;
+            background-image: url();
+            background-position: 100% 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: grid;
+            place-items: center;
+        }
+        .clock {
+            font-size: 480%;
+            padding: 20px;
+            color: white;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: rgba(165, 143, 143, 0.3);
+            border-radius: 8px 12px;
+            color: #defdf7;
+            text-align: center;
+        }
+        .meradin {
+            margin-left: 25px;
+            color: yellow;
+            padding: 10px;
+            border-radius: 10px 10px;
+        }
+        .day {
+            font-size: 40px;
+            color: cyan;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="clock">
+            <span class="hours">00</span><span>:</span><span class="min">00</span><span>:</span><span class="sec">00</span>
+            <span class="meradin">AM</span>
+            <div class="day">Sunday</div>
+            <div style="font-size: 47px; text-align: center; margin-top: 40px; color: orange;">Digital Clock</div>
+            <h6 style="font-size: 20px; text-align: center; padding-top: 10px; color: rgb(241, 139, 139);">Using HTML, CSS & JavaScript</h6>
+        </div>
+    </div>
+    <script>
+        function update() {
+            var date = new Date();
+            let hr = date.getHours();
+            let min = date.getMinutes();
+            let sec = date.getSeconds();
+            let med = hr >= 12 ? "PM" : "AM";
+            hr = hr % 12;
+            hr = hr ? hr : 12;
+            hr = hr < 10 ? "0" + hr : hr;
+            min = min < 10 ? "0" + min : min;
+            sec = sec < 10 ? "0" + sec : sec;
+
+            // Array of days
+            let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            let currentDay = days[date.getDay()];
+
+            document.querySelector(".hours").textContent = hr;
+            document.querySelector(".min").textContent = min;
+            document.querySelector(".sec").textContent = sec;
+            document.querySelector(".meradin").textContent = med;
+            document.querySelector(".day").textContent = currentDay;
+        }
+
+        setInterval(update, 1000);
+        update(); // Call once immediately to avoid delay
+    </script>
+</body>
+</html>
